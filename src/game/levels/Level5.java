@@ -49,10 +49,10 @@ public class Level5 extends Level {
         addGameObject(new PlatformObject(955, 290));
 
         //spikes
-        addGameObject(new SpikesObject2(760, 728));
-        addGameObject(new SpikesObject2(906, 728));
-        addGameObject(new SpikesObject2(1052, 728));
-        addGameObject(new SpikesObject2(1198, 728));
+        addGameObject(new UpSpikesObject(760, 728));
+        addGameObject(new UpSpikesObject(906, 728));
+        addGameObject(new UpSpikesObject(1052, 728));
+        addGameObject(new UpSpikesObject(1198, 728));
 
 
         //portal

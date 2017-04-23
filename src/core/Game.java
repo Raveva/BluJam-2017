@@ -1,7 +1,6 @@
 package core;
 
 
-import game.levels.Level1;
 import game.levels.Level2;
 import game.levels.Level6;
 import game.levels.TestLevel;
@@ -11,16 +10,11 @@ import processing.core.PApplet;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Stack;
 
 public class Game extends PApplet {
 
     private static Level currentLevel;
-
-    private HashMap<String, Level> levels = new HashMap<>();
 
     private static Stack<String> signals = new Stack<>();
     public static void addSignal(String signal) {signals.add(signal);}
@@ -48,14 +42,11 @@ public class Game extends PApplet {
         currentLevel = level;
     }
 
-
     public void settings() {
         size(1280, 832);
     }
 
-    public void setupLevels() {
-        levels.put("test level", new TestLevel());
-    }
+
 
 
     public void setup() {
@@ -119,11 +110,11 @@ public class Game extends PApplet {
         //AudioHandler.loadAudioFile("biotone.wav", this);
         //AudioHandler.playAudioFile("biotone.wav");
 
+
         currentLevel = new MenuLevel();
 
-
     }
- 
+
     float x = 0;
     float delta = 1;
     PImage img;
@@ -132,6 +123,7 @@ public class Game extends PApplet {
     long pastNano = System.nanoTime();
     public void draw() {
 
+        processSignals();
 
         InputHandler.addEvent(new MouseEvent(this, mouseX, mouseY, MouseEvent.Type.MOVE));
 
@@ -150,16 +142,12 @@ public class Game extends PApplet {
     private void processSignals() {
         while (!signals.isEmpty()) {
             String signal = signals.pop();
-            if (signal.equals("pa   use")) {
+            if (signal.equals("pause")) {
                 paused = true;
             } else if (signal.equals("resume")) {
                 paused = false;
-            } else if (signal.equals("setLevel")) {
+            } else if (signal.equals("next")) {
                 currentLevel = new TestLevel();
-                String level = signals.pop();
-                if (levels.containsKey(level)) {
-                    currentLevel = levels.get(level);
-                }
             }
         }
     }

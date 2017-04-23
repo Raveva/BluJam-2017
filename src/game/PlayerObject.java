@@ -66,7 +66,7 @@ public class PlayerObject extends GameObject implements Collidable, Physicable{
         if (InputHandler.isKeyDown(87)) {
             force.add(0,-0.1f);
             if (canJump) {
-                physics.velocity.add(0, -64);
+                physics.velocity.add(0, -54);
                 canJump = false;
             }
         }

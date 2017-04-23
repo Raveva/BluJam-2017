@@ -4,12 +4,13 @@ import core.Asset;
 import core.AssetHandler;
 import core.Game;
 import game.Button;
-import game.levels.*;
+import game.levels.Level3;
 
 /**
- * Created by zva on 22/04/17.
+ * Created by sam on 23/04/17.
  */
-public class PlayButtonObject extends Button  {
+
+public class NextLevelButtonObject extends Button {
 
 
     private Asset asset;
@@ -17,18 +18,17 @@ public class PlayButtonObject extends Button  {
     private float width;
     private float height;
 
-    public PlayButtonObject(float x, float y) {
+    public NextLevelButtonObject(float x, float y) {
         position.x = x;
         position.y = y;
         width = 378;
         height = 81;
 
 
-        asset = AssetHandler.getAsset("playbutton.png");
+        asset = AssetHandler.getAsset("NextLevelButton.png");
+
 
     }
-
-
 
 
     @Override
@@ -46,10 +46,10 @@ public class PlayButtonObject extends Button  {
     public void onClick(Game game, int x, int y) {
         if (x > position.x && x < position.x + width &&
                 y > position.y && y < position.y + height) {
-            game.changeLevel(new Level4());
+
+
+               game.changeLevel(new Level3());  //needs to be next level
         }
     }
-
-
 
 }

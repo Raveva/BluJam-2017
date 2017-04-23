@@ -43,9 +43,9 @@ public class Level7 extends Level {
 
         //spikes
 
-        addGameObject(new SpikesObject2(906, 728));
-        addGameObject(new SpikesObject2(1052, 728));
-        addGameObject(new SpikesObject2(1198, 728));
+        addGameObject(new UpSpikesObject(906, 728));
+        addGameObject(new UpSpikesObject(1052, 728));
+        addGameObject(new UpSpikesObject(1198, 728));
 
         //box
         addGameObject(new BoxObject(842, 750));
