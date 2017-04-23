@@ -15,7 +15,7 @@ public class NextLevelMenu extends Level {
     public NextLevelMenu() {
 
       //  addGameObject(new TitleObject(380, 100));
-        addGameObject(new PlayButtonObject(450, 450));
+        addGameObject(new NextLevelButtonObject(450, 450));
         addGameObject(new ExitToMainButtonObject(450, 550));
 
 

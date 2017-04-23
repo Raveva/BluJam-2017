@@ -38,8 +38,10 @@ public class Level1 extends Level {
 
         }
 
-        //portal
+
+//portal
             addGameObject(new PortalObject(1100, 600, new Level2()));
+
 
     }
 
