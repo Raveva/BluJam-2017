@@ -1,7 +1,9 @@
 package core.components;
 
 import core.Debug;
+import core.Game;
 import core.GameObject;
+import game.levelElements.PortalObject;
 import processing.core.PVector;
 
 import java.util.Collection;
@@ -10,7 +12,7 @@ import java.util.Stack;
 /**
  * Created by zva on 21/04/17.
  */
-public class PhysicsComponent <T extends GameObject & Physicable & Collidable> {
+public class PhysicsComponent<T extends GameObject & Physicable & Collidable> {
 
     public static float gravityStrength = 1;
 
@@ -37,8 +39,13 @@ public class PhysicsComponent <T extends GameObject & Physicable & Collidable> {
         this.mass = mass;
     }
 
-    public void setGravity(boolean gravity) {this.gravity = gravity;}
-    public void setDrag(boolean drag) {this.drag = drag;}
+    public void setGravity(boolean gravity) {
+        this.gravity = gravity;
+    }
+
+    public void setDrag(boolean drag) {
+        this.drag = drag;
+    }
 
     private PVector getNetForce() {
         PVector netForce;
@@ -71,7 +78,7 @@ public class PhysicsComponent <T extends GameObject & Physicable & Collidable> {
         if (collider.hasCollided()) {
 
             PVector normal = collider.getNormal();
-            netForce.add(normal.x*netForce.x, normal.y*netForce.y);
+            netForce.add(normal.x * netForce.x, normal.y * netForce.y);
             if (Math.abs(normal.y) > 0.5f) {
                 if (velocity.y > 0) {
                     velocity.set(velocity.x, 0);
@@ -82,22 +89,39 @@ public class PhysicsComponent <T extends GameObject & Physicable & Collidable> {
             }
 
             //while (collider.collidesWith(collider.getCollidedWith())) {
-                Debug.print("Bump");
-                obj.getPosition().add(normal);
+            Debug.print("Bump");
+            obj.getPosition().add(normal);
             //}
         }
     }
 
+    public void setVelocity(PVector p) {
+        velocity = p;
+    }
+
     public void update(float dt) {
 
-
+        /*
         netForce = getNetForce();
         resolveCollision();
 
         acceleration = netForce.div(mass);
         velocity.add(acceleration);
         PVector deltaPosition = new PVector(velocity.x, velocity.y).mult(dt/100);
+        */
+
         obj.getPosition().add(velocity);
+        Collidable c;
+        if ((c = obj.getCollider().level.collides(obj)) != null) {
+
+            if (c instanceof PortalObject) {
+                Debug.print("Coll?");
+                Game.changeLevel(((PortalObject) c).next);
+            }
+
+
+            obj.getPosition().sub(velocity.x * 2, velocity.y * 2);
+        }
 
     }
 }

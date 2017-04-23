@@ -19,7 +19,10 @@ public class PortalObject extends GameObject implements Collidable {
     private float frameTime = 60;
     private float timeAccumulator = 0;
 
-    public PortalObject(float x, float y) {
+    public Level next;
+
+    public PortalObject(float x, float y, Level next) {
+        this.next = next;
         position.x = x;
         position.y = y;
 
@@ -44,7 +47,7 @@ public class PortalObject extends GameObject implements Collidable {
         if (collider.hasCollided()) {
             Collidable obj = collider.getCollidedWith();
             if (obj instanceof PlayerObject) {
-                Game.changeLevel(new Level1());
+                Game.changeLevel(next);
             }
         }
     }

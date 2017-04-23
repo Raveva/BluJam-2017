@@ -50,6 +50,7 @@ public class Game extends PApplet {
 
 
     public void setup() {
+        scale(0.8f);
         //background image
 
         AssetHandler.addAsset("titlepage.png", this); //1280x832

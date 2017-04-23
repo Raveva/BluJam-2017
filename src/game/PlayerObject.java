@@ -78,7 +78,7 @@ public class PlayerObject extends GameObject implements Collidable, Physicable{
             Debug.print(e);
         }
 
-        physics.addForce(force);
+        physics.setVelocity(force);
     }
 
     @Override
@@ -86,7 +86,8 @@ public class PlayerObject extends GameObject implements Collidable, Physicable{
         if (collider.hasCollided()) {
             Collidable obj = collider.getCollidedWith();
             if (obj instanceof PortalObject) {
-                Game.changeLevel(new Level1());
+                Debug.print("Coll?");
+                Game.changeLevel(((PortalObject)obj).next);
             }
         }
 

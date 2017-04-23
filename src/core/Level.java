@@ -50,23 +50,23 @@ public class Level {
                 Collidable objToCheck = collidables.get(j);
                 if (obj.getCollider().collidesWith(objToCheck)) {
                     obj.getCollider().setCollidedWith(objToCheck);
-                    Debug.print("Found collision");
+
                     break;
                 }
             }
         }
     }
 
-    public boolean collides(Collidable obj) {
+    public Collidable collides(Collidable obj) {
         for (Collidable c : collidables) {
             if (c == obj) {continue;}
             else {
                 if (obj.getCollider().collidesWith(c)) {
-                    return true;
+                    return c;
                 }
             }
         }
-        return false;
+        return null;
     }
 
     public Level(File levelFile) {
